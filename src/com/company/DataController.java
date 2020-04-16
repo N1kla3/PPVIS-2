@@ -3,9 +3,6 @@ package com.company;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +51,8 @@ public class DataController {
                 temp++;
             }
         }
-        if (indexes.size() > 0) {
-            tableData.subList(0, indexes.size()).clear();
+        for(int i = indexes.size()-1; i >= 0; i--){
+            tableData.remove((int)indexes.get(i));
         }
         return temp;
     }

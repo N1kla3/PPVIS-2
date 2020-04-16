@@ -22,8 +22,6 @@ public class DelFrame extends JFrame {
 
     private void init() {
         delete = new JButton("Delete");
-
-
         delete.setMaximumSize(new Dimension(100, 20));
 
         add(cPanel);
@@ -32,7 +30,7 @@ public class DelFrame extends JFrame {
 
     public int deleteStudents(){
         String name = cPanel.name.getText();
-        int min, max = 0;
+        int min, max;
         if(cPanel.minTitul.getText().equals("")){
             min = 0;
         }else{

@@ -18,7 +18,6 @@ public class ChoosePanel extends JPanel {
 
         createLabels();
         createText();
-
     }
 
     private void createLabels(){
@@ -44,7 +43,6 @@ public class ChoosePanel extends JPanel {
         add(labelPanel);
     }
 
-
     private void createText(){
         textPanel = new JPanel();
         textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.LINE_AXIS));
@@ -52,18 +50,14 @@ public class ChoosePanel extends JPanel {
         final int WIDTH = 100;
         final int HEIGHT = 20;
 
-        String[] types = new String[] {"All", "Офис", "Склад", "Гараж",
-                "Производство", "Столовая"};
-        DefaultComboBoxModel<String> cbModel = new DefaultComboBoxModel<String>();
-        for (int i = 0; i < types.length; i++)
-            cbModel.addElement(types[i]);
+        String[] types = new String[] {"All", "Баскетбол", "Шахматы", "Шашки", "Футбол", "Плавание"};
+        DefaultComboBoxModel<String> cbModel = new DefaultComboBoxModel<>();
+        for (String s : types) cbModel.addElement(s);
         type = new JComboBox<>(cbModel);
 
-        String[] categories = new String[] {"All", "Офис", "Склад", "Гараж",
-                "Производство", "Столовая"};
-        DefaultComboBoxModel<String> cbbModel = new DefaultComboBoxModel<String>();
-        for (int i = 0; i < categories.length; i++)
-            cbbModel.addElement(categories[i]);
+        String[] categories = new String[] {"All", "1-й юношеский", "2-й разряд", "3й-разряд", "кмс", "мастер спорта"};
+        DefaultComboBoxModel<String> cbbModel = new DefaultComboBoxModel<>();
+        for (String s : categories) cbbModel.addElement(s);
         category = new JComboBox<>(cbbModel);
 
         name = new JTextField();
@@ -75,6 +69,7 @@ public class ChoosePanel extends JPanel {
         maxTitul = new JTextField();
         maxTitul.setMaximumSize(new Dimension(WIDTH, HEIGHT));
         maxTitul.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+
         type.setMaximumSize(new Dimension(WIDTH, HEIGHT));
         category.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 

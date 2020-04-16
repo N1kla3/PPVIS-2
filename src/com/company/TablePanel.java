@@ -123,8 +123,4 @@ public class TablePanel extends JPanel {
             index++;
         }
     }
-
-    public void setStudents(List<MyData> data){
-        DC.setStudents(data);
-    }
 }

@@ -32,7 +32,7 @@ public class AddFrame extends JFrame {
         add(textPanel);
         add(add);
 
-        setSize(500, 150);
+        setSize(600, 150);
         setResizable(false);
     }
 
@@ -67,18 +67,14 @@ public class AddFrame extends JFrame {
         final int WIDTH = 100;
         final int HEIGHT = 20;
 
-        String[] types = new String[] {"Офис", "Склад", "Гараж",
-                "Производство", "Столовая"};
-        DefaultComboBoxModel<String> cbModel = new DefaultComboBoxModel<String>();
-        for (int i = 0; i < types.length; i++)
-            cbModel.addElement(types[i]);
+        String[] types = new String[] {"Баскетбол", "Шахматы", "Шашки", "Футбол", "Плавание"};
+        DefaultComboBoxModel<String> cbModel = new DefaultComboBoxModel<>();
+        for (String s : types) cbModel.addElement(s);
         type = new JComboBox<>(cbModel);
 
-        String[] categories = new String[] {"Офис", "Склад", "Гараж",
-                "Производство", "Столовая"};
-        DefaultComboBoxModel<String> cbbModel = new DefaultComboBoxModel<String>();
-        for (int i = 0; i < categories.length; i++)
-            cbbModel.addElement(categories[i]);
+        String[] categories = new String[] {"1-й юношеский", "2-й разряд", "3й-разряд", "кмс", "мастер спорта"};
+        DefaultComboBoxModel<String> cbbModel = new DefaultComboBoxModel<>();
+        for (String s : categories) cbbModel.addElement(s);
         category = new JComboBox<>(cbbModel);
 
         name = new JTextField();
@@ -89,6 +85,7 @@ public class AddFrame extends JFrame {
         position.setMaximumSize(new Dimension(WIDTH, HEIGHT));
         titul = new JTextField();
         titul.setMaximumSize(new Dimension(WIDTH, HEIGHT));
+
         type.setMaximumSize(new Dimension(WIDTH, HEIGHT));
         category.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 
