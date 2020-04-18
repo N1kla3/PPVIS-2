@@ -112,6 +112,10 @@ public class TablePanel extends JPanel {
         table.setValueAt(" ", row, 5);
     }
 
+    public void setStudents(DataController data){
+        DC = data;
+    }
+    
     public  void showTable(DataController DC){
         int index = 0;
         for(int i = left-1; i < right; i++){

@@ -35,6 +35,7 @@ public class FindFrame extends JFrame {
             String category = (String) choosePanel.category.getSelectedItem();
             DataController temp = new DataController();
             temp.setStudents(this.DC.FindStudents(name, min, max, type, category));
+            tablePanel.setStudents(temp);
             tablePanel.showTable(temp);
         });
         tablePanel = new TablePanel(DC);
