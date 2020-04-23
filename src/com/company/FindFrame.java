@@ -2,14 +2,16 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class FindFrame extends JFrame {
-    DataController DC;
+    private DataController DC;
 
-    JButton findButton;
-    TablePanel tablePanel;
-    ChoosePanel choosePanel = new ChoosePanel();
+    private JButton findButton;
 
+    private TablePanel tablePanel;
+
+    private ChoosePanel choosePanel = new ChoosePanel();
     FindFrame(DataController DC){
         super("Find Student");
         this.DC = DC;
@@ -19,25 +21,14 @@ public class FindFrame extends JFrame {
 
         findButton = new JButton("Find");
         findButton.addActionListener(actionEvent -> {
-            String name = choosePanel.name.getText();
-            int min, max;
-            if(choosePanel.minTitul.getText().equals("")){
-                min = 0;
-            }else{
-                min = Integer.parseInt(choosePanel.minTitul.getText());
-            }
-            if(choosePanel.maxTitul.getText().equals("")){
-                max = 0;
-            }else{
-                max = Integer.parseInt(choosePanel.maxTitul.getText());
-            }
-            String type = (String) choosePanel.type.getSelectedItem();
-            String category = (String) choosePanel.category.getSelectedItem();
+            List<String> list = choosePanel.getStudentFromFields();
             DataController temp = new DataController();
-            temp.setStudents(this.DC.FindStudents(name, min, max, type, category));
+            temp.setStudents(this.DC.FindStudents(list.get(0), Integer.parseInt(list.get(1)),
+                    Integer.parseInt(list.get(2)), list.get(3), list.get(4)));
             tablePanel.setStudents(temp);
             tablePanel.showTable(temp);
         });
+
         tablePanel = new TablePanel(DC);
         JPanel pan = new JPanel();
         pan.add(findButton);
@@ -47,4 +38,19 @@ public class FindFrame extends JFrame {
         add(tablePanel);
     }
 
+    public DataController getDC() {
+        return DC;
+    }
+
+    public JButton getFindButton() {
+        return findButton;
+    }
+
+    public TablePanel getTablePanel() {
+        return tablePanel;
+    }
+
+    public ChoosePanel getChoosePanel() {
+        return choosePanel;
+    }
 }

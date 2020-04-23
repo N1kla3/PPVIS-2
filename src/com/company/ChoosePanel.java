@@ -2,17 +2,20 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChoosePanel extends JPanel {
 
-    JPanel textPanel;
+    private JPanel textPanel;
 
-    JTextField name;
-    JTextField minTitul;
-    JTextField maxTitul;
-    JComboBox<String> type;
-    JComboBox<String> category;
 
+    private JTextField name;
+
+    private JTextField minTitul;
+    private JTextField maxTitul;
+    private JComboBox<String> type;
+    private JComboBox<String> category;
     ChoosePanel(){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -80,5 +83,42 @@ public class ChoosePanel extends JPanel {
         textPanel.add(category);
 
         add(textPanel);
+    }
+
+    public List<String> getStudentFromFields(){
+        List<String> result = new ArrayList<>();
+        result.add(getfieldName());
+        int min = 0;
+        int max = 0;
+        if(!getMinTitul().equals("")){
+            min = Integer.parseInt(getMinTitul());
+        }else if(!getMaxTitul().equals("")){
+            max = Integer.parseInt(getMaxTitul());
+        }
+        result.add(String.valueOf(min));
+        result.add(String.valueOf(max));
+        result.add(getType());
+        result.add(getCategory());
+        return result;
+    }
+
+    public String getfieldName() {
+        return name.getText();
+    }
+
+    public String getMinTitul() {
+        return minTitul.getText();
+    }
+
+    public String getMaxTitul() {
+        return maxTitul.getText();
+    }
+
+    public String getType() {
+        return (String)type.getSelectedItem();
+    }
+
+    public String getCategory() {
+        return (String)category.getSelectedItem();
     }
 }

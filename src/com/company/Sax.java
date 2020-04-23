@@ -9,7 +9,9 @@ import javax.xml.parsers.SAXParserFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-
+enum q {
+    name, group, position, titul, type, category
+}
 public class Sax {
     private String name;
     private String group;
@@ -40,22 +42,22 @@ public class Sax {
 
                 public void startElement(String uri, String localName, String qName,
                                          Attributes attributes) throws SAXException {
-                    if (qName.equalsIgnoreCase("name")) {
+                    if (qName.equalsIgnoreCase(q.name.toString())) {
                         bName = true;
                     }
-                    if (qName.equalsIgnoreCase("group")) {
+                    if (qName.equalsIgnoreCase(q.group.toString())) {
                         bGroup = true;
                     }
-                    if (qName.equalsIgnoreCase("position")) {
+                    if (qName.equalsIgnoreCase(q.position.toString())) {
                         bPosition = true;
                     }
-                    if (qName.equalsIgnoreCase("titul")) {
+                    if (qName.equalsIgnoreCase(q.titul.toString())) {
                         bTitul = true;
                     }
-                    if (qName.equalsIgnoreCase("type")) {
+                    if (qName.equalsIgnoreCase(q.type.toString())) {
                         bType = true;
                     }
-                    if (qName.equalsIgnoreCase("category")) {
+                    if (qName.equalsIgnoreCase(q.category.toString())) {
                         bCategory = true;
                     }
                 }

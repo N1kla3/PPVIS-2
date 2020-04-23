@@ -2,21 +2,22 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class DelFrame extends JFrame {
-    DataController DC;
+    private DataController dataController;
 
-    ChoosePanel cPanel = new ChoosePanel();
+    private ChoosePanel choosePanel = new ChoosePanel();
 
-    JButton delete;
+    private JButton delete;
 
-    DelFrame(DataController DC){
+    DelFrame(DataController dataController){
         super("Delete frame");
-        this.DC = DC;
+        this.dataController = dataController;
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         init();
-        setSize(400, 120);
+        setSize(500, 120);
         setResizable(false);
     }
 
@@ -24,25 +25,25 @@ public class DelFrame extends JFrame {
         delete = new JButton("Delete");
         delete.setMaximumSize(new Dimension(100, 20));
 
-        add(cPanel);
+        add(choosePanel);
         add(delete);
     }
 
     public int deleteStudents(){
-        String name = cPanel.name.getText();
-        int min, max;
-        if(cPanel.minTitul.getText().equals("")){
-            min = 0;
-        }else{
-            min = Integer.parseInt(cPanel.minTitul.getText());
-        }
-        if(cPanel.maxTitul.getText().equals("")){
-            max = 0;
-        }else{
-            max = Integer.parseInt(cPanel.maxTitul.getText());
-        }
-        String type = (String) cPanel.type.getSelectedItem();
-        String category = (String) cPanel.category.getSelectedItem();
-        return  this.DC.DeleteStudents(name, min, max, type, category);
+        List<String> list = choosePanel.getStudentFromFields();
+        return  this.dataController.DeleteStudents(list.get(0), Integer.parseInt(list.get(1)),
+                Integer.parseInt(list.get(2)), list.get(3), list.get(4));
+    }
+
+    public DataController getDataController() {
+        return dataController;
+    }
+
+    public ChoosePanel getChoosePanel() {
+        return choosePanel;
+    }
+
+    public JButton getDelete() {
+        return delete;
     }
 }

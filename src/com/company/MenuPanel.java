@@ -4,17 +4,19 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MenuPanel extends JPanel {
-    JMenuBar menu;
+    private JMenuBar menu;
 
-    JMenu fileMenu;
-    JMenu editMenu;
+    private JMenu fileMenu;
+    private JMenu editMenu;
 
-    JMenuItem find;
-    JMenuItem addInfo;
-    JMenuItem removeInfo;
+    private JMenuItem find;
+    private JMenuItem addInfo;
 
-    JMenuItem save;
-    JMenuItem loadFile;
+    private JMenuItem removeInfo;
+
+    private JMenuItem save;
+
+    private JMenuItem loadFile;
 
     MenuPanel(){
         setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
@@ -49,5 +51,25 @@ public class MenuPanel extends JPanel {
         editMenu.add(removeInfo);
 
         menu.add(editMenu);
+    }
+
+    public JMenuItem getFind() {
+        return find;
+    }
+
+    public JMenuItem getAddInfo() {
+        return addInfo;
+    }
+
+    public JMenuItem getRemoveInfo() {
+        return removeInfo;
+    }
+
+    public JMenuItem getSave() {
+        return save;
+    }
+
+    public JMenuItem getLoadFile() {
+        return loadFile;
     }
 }

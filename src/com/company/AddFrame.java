@@ -98,13 +98,13 @@ public class AddFrame extends JFrame {
     }
 
     public void addStudent(){
-        String name_ = name.getText();
-        String group_ = group.getText();
-        String position_ = position.getText();
-        int titul_ = (titul.getText().equals("") ? 0 : Integer.parseInt(titul.getText()));
-        String type_ = String.valueOf(type.getSelectedItem());
-        String category_ = String.valueOf(category.getSelectedItem());
-        DC.Add(new MyData(name_, group_, position_, titul_, type_, category_));
+        String tempName = name.getText();
+        String tempGroup = group.getText();
+        String tempPosition = position.getText();
+        int tempTitul = (titul.getText().equals("") ? 0 : Integer.parseInt(titul.getText()));
+        String tempType = String.valueOf(type.getSelectedItem());
+        String tempCategory = String.valueOf(category.getSelectedItem());
+        DC.Add(new MyData(tempName, tempGroup, tempPosition, tempTitul, tempType, tempCategory));
     }
 
 }

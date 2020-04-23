@@ -21,9 +21,9 @@ import java.util.List;
 
 public class Dom {
 
-    static String  pathTo;
+    String  pathTo;
     private static List<MyData> students;
-    public static void setStuds(List<MyData> studs, String path){
+    public  void setStuds(List<MyData> studs, String path){
         students = studs;
         pathTo = path;
     }
@@ -33,7 +33,7 @@ public class Dom {
     }
 
 
-    private static Node createBookElement(Document doc, String name,
+    private  Node createBookElement(Document doc, String name,
                                           String value) {
         Element node = doc.createElement(name);
         node.appendChild(doc.createTextNode(value));
@@ -41,7 +41,7 @@ public class Dom {
         return node;
     }
 
-    private static Node createBook(Document document, String name, String group, String position, int titul, String type, String category) {
+    private  Node createBook(Document document, String name, String group, String position, int titul, String type, String category) {
         Element student = document.createElement("student");
 
         student.appendChild(createBookElement(document, "name", name));
@@ -54,11 +54,11 @@ public class Dom {
         return student;
     }
 
-    public static void addBook(MyData student){
+    public  void addBook(MyData student){
         students.add(student);
     }
 
-    public static void setBooks() {
+    public  void setBooks() {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

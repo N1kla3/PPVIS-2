@@ -11,17 +11,17 @@ import java.io.IOException;
 
 public class Main extends JFrame {
 
-    DataController applData;
+    private DataController dataController;
 
-    AddFrame addFrame;
-    FindFrame findFrame;
-    DelFrame delFrame;
+    private AddFrame addFrame;
+    private FindFrame findFrame;
+    private DelFrame delFrame;
 
-    TablePanel tablePanel;
+    private TablePanel tablePanel;
 
-    Main(DataController DC) {
+    Main(DataController dataController) {
         super("Second lab");
-        applData = DC;
+        this.dataController = dataController;
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel();
@@ -29,23 +29,23 @@ public class Main extends JFrame {
 
         panel.setLayout(layout);
 
-        addFrame = new AddFrame(applData);
-        delFrame = new DelFrame(applData);
-        findFrame = new FindFrame(applData);
+        addFrame = new AddFrame(this.dataController);
+        delFrame = new DelFrame(this.dataController);
+        findFrame = new FindFrame(this.dataController);
 
         FindListener findListener = new FindListener();
         AddListener addListener = new AddListener();
         DelListener delListener = new DelListener();
 
         MenuPanel menuPanel = new MenuPanel();
-        menuPanel.find.addActionListener(findListener);
-        menuPanel.addInfo.addActionListener(addListener);
-        menuPanel.removeInfo.addActionListener(delListener);
-        menuPanel.save.addActionListener(new SaveListener());
-        menuPanel.loadFile.addActionListener(new LoadListener());
+        menuPanel.getFind().addActionListener(findListener);
+        menuPanel.getAddInfo().addActionListener(addListener);
+        menuPanel.getRemoveInfo().addActionListener(delListener);
+        menuPanel.getSave().addActionListener(new SaveListener());
+        menuPanel.getLoadFile().addActionListener(new LoadListener());
         panel.add(menuPanel);
 
-        tablePanel = new TablePanel(applData);
+        tablePanel = new TablePanel(this.dataController);
         panel.add(tablePanel);
 
         ControlPanel controlPanel = new ControlPanel();
@@ -54,15 +54,15 @@ public class Main extends JFrame {
         controlPanel.add.addActionListener(addListener);
         panel.add(controlPanel);
 
-        delFrame.delete.addActionListener(actionEvent -> {
+        delFrame.getDelete().addActionListener(actionEvent -> {
             int amount = delFrame.deleteStudents();
             JOptionPane.showConfirmDialog(this, "Deleted: " + amount);
-            tablePanel.showTable(applData);
+            tablePanel.showTable(this.dataController);
         });
 
         addFrame.add.addActionListener(actionEvent -> {
             addFrame.addStudent();
-            tablePanel.showTable(applData);
+            tablePanel.showTable(this.dataController);
         });
 
         add(panel);
@@ -104,7 +104,7 @@ public class Main extends JFrame {
             int returnVal = chooser.showSaveDialog(chooser);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 String path = chooser.getSelectedFile().getAbsolutePath();
-                applData.Write(path);
+                dataController.Write(path);
             }
         }
     }
@@ -119,8 +119,8 @@ public class Main extends JFrame {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 String path = chooser.getSelectedFile().getAbsolutePath();
                 try {
-                    applData.Read(path);
-                    tablePanel.showTable(applData);
+                    dataController.Read(path);
+                    tablePanel.showTable(dataController);
                 } catch (ParserConfigurationException e) {
                     e.printStackTrace();
                 } catch (SAXException e) {

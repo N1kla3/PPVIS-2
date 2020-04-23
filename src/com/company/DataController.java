@@ -11,50 +11,49 @@ public class DataController {
 
     private List<MyData> tableData;
 
+    private boolean bName;
+    private boolean bTitul;
+    private boolean bType;
+    private boolean bCategory;
+
     DataController(){
         tableData = new ArrayList<MyData>();
     }
 
-    public List<MyData> FindStudents(String name, int minTitul, int maxTitul, String type, String Category){
+    private List<MyData> FindTemplate(String name, int minTitul, int maxTitul, String type, String Category) {
         List<MyData> temp = new ArrayList<>();
-
-        boolean bName = (name.equals(""));
-        boolean bTitul = (minTitul == 0 && maxTitul == 0);
-        boolean bType = (type.equals("All"));
-        boolean bCategory = (Category.equals("All"));
-
-        for(int i = 0; i < tableData.size(); i++){
-            if((tableData.get(i).getName().equals(name)||bName)
-                &&(tableData.get(i).getTitul() >= minTitul && tableData.get(i).getTitul() <= maxTitul || bTitul)
-                &&(tableData.get(i).getType().equals(type)||bType)
-                &&(tableData.get(i).getCategory().equals(Category)||bCategory)){
-                temp.add(tableData.get(i));
+        for (MyData tableDatum : tableData) {
+            boolean bIsFits = (tableDatum.getName().equals(name) || bName)
+                    && (tableDatum.getTitul() >= minTitul && tableDatum.getTitul() <= maxTitul || bTitul)
+                    && (tableDatum.getType().equals(type) || bType)
+                    && (tableDatum.getCategory().equals(Category) || bCategory);
+            if(bIsFits){
+                temp.add(tableDatum);
             }
         }
         return temp;
     }
 
-    public int DeleteStudents(String name, int minTitul, int maxTitul, String type, String Category){
-        int temp = 0;
-        boolean bName = (name.equals(""));
-        boolean bTitul = (minTitul == 0 && maxTitul == 0);
-        boolean bType = (type.equals("All"));
-        boolean bCategory = (Category.equals("All"));
+    public List<MyData> FindStudents(String name, int minTitul, int maxTitul, String type, String Category){
 
-        List<Integer> indexes = new ArrayList<Integer>();
-        for(int i = 0; i < tableData.size(); i++){
-            if((tableData.get(i).getName().equals(name)||bName)
-                    &&(tableData.get(i).getTitul() >= minTitul && tableData.get(i).getTitul() <= maxTitul || bTitul)
-                    &&(tableData.get(i).getType().equals(type)||bType)
-                    &&(tableData.get(i).getCategory().equals(Category)||bCategory)){
-                indexes.add(i);
-                temp++;
-            }
-        }
-        for(int i = indexes.size()-1; i >= 0; i--){
-            tableData.remove((int)indexes.get(i));
-        }
-        return temp;
+        bName = (name.equals(""));
+        bTitul = (minTitul == 0 && maxTitul == 0);
+        bType = (type.equals("All"));
+        bCategory = (Category.equals("All"));
+
+        return FindTemplate(name, minTitul, maxTitul, type, Category);
+    }
+
+    public int DeleteStudents(String name, int minTitul, int maxTitul, String type, String Category){
+        bName = (name.equals(""));
+        bTitul = (minTitul == 0 && maxTitul == 0);
+        bType = (type.equals("All"));
+        bCategory = (Category.equals("All"));
+
+        List<MyData> temp = FindTemplate(name, minTitul, maxTitul, type, Category);
+        int amount = temp.size();
+        tableData.removeAll(temp);
+        return amount;
     }
 
     public void Add(MyData student){
@@ -68,8 +67,9 @@ public class DataController {
     }
 
     public void Write(String pathToFile){
-        Dom.setStuds(tableData, pathToFile);
-        Dom.setBooks();
+        Dom dom = new Dom();
+        dom.setStuds(tableData, pathToFile);
+        dom.setBooks();
     }
 
     public MyData atIndex(int index){
