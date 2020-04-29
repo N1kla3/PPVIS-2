@@ -9,9 +9,6 @@ import javax.xml.parsers.SAXParserFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-enum q {
-    name, group, position, titul, type, category
-}
 public class Sax {
     private String name;
     private String group;
@@ -40,24 +37,24 @@ public class Sax {
                 boolean bCategory = false;
 
 
-                public void startElement(String uri, String localName, String qName,
+                public void startElement(String uri, String localName, String queryName,
                                          Attributes attributes) throws SAXException {
-                    if (qName.equalsIgnoreCase(q.name.toString())) {
+                    if (queryName.equalsIgnoreCase(EValidParams.NAME.toString())) {
                         bName = true;
                     }
-                    if (qName.equalsIgnoreCase(q.group.toString())) {
+                    if (queryName.equalsIgnoreCase(EValidParams.GROUP.toString())) {
                         bGroup = true;
                     }
-                    if (qName.equalsIgnoreCase(q.position.toString())) {
+                    if (queryName.equalsIgnoreCase(EValidParams.POSITION.toString())) {
                         bPosition = true;
                     }
-                    if (qName.equalsIgnoreCase(q.titul.toString())) {
+                    if (queryName.equalsIgnoreCase(EValidParams.TITUL.toString())) {
                         bTitul = true;
                     }
-                    if (qName.equalsIgnoreCase(q.type.toString())) {
+                    if (queryName.equalsIgnoreCase(EValidParams.TYPE.toString())) {
                         bType = true;
                     }
-                    if (qName.equalsIgnoreCase(q.category.toString())) {
+                    if (queryName.equalsIgnoreCase(EValidParams.CATEGORY.toString())) {
                         bCategory = true;
                     }
                 }

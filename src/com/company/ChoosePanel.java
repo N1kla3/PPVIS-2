@@ -92,7 +92,8 @@ public class ChoosePanel extends JPanel {
         int max = 0;
         if(!getMinTitul().equals("")){
             min = Integer.parseInt(getMinTitul());
-        }else if(!getMaxTitul().equals("")){
+        }
+        if(!getMaxTitul().equals("")){
             max = Integer.parseInt(getMaxTitul());
         }
         result.add(String.valueOf(min));

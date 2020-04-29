@@ -56,7 +56,7 @@ public class Main extends JFrame {
 
         delFrame.getDelete().addActionListener(actionEvent -> {
             int amount = delFrame.deleteStudents();
-            JOptionPane.showConfirmDialog(this, "Deleted: " + amount);
+            JOptionPane.showMessageDialog(this, "Deleted: " + amount);
             tablePanel.showTable(this.dataController);
         });
 

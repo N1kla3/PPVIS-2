@@ -38,6 +38,7 @@ public class DataController {
 
         bName = (name.equals(""));
         bTitul = (minTitul == 0 && maxTitul == 0);
+        if(maxTitul < minTitul)maxTitul = minTitul;
         bType = (type.equals("All"));
         bCategory = (Category.equals("All"));
 
@@ -47,6 +48,7 @@ public class DataController {
     public int DeleteStudents(String name, int minTitul, int maxTitul, String type, String Category){
         bName = (name.equals(""));
         bTitul = (minTitul == 0 && maxTitul == 0);
+        if(maxTitul < minTitul)maxTitul = minTitul;
         bType = (type.equals("All"));
         bCategory = (Category.equals("All"));
 
